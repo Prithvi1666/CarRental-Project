@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { assets, menuLinks } from '../assets/assets'
 import {Link, useLocation, useNavigate} from 'react-router-dom'
+import {motion} from 'motion/react'
 
 const Navbar = ({setShowLogin}) => {
 
@@ -9,12 +10,16 @@ const Navbar = ({setShowLogin}) => {
     const navigate = useNavigate()
 
   return (
-    <div className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4
+    <motion.div
+    initial={{y: -20, opacity: 0}}
+    animate={{y: 0, opacity: 1}}
+    transition={{duration: 0.5}}
+    className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4
      text-gray-600 border-b borderColor relative transition-all 
      ${location.pathname === '/' && "bg-light"}`}>
 
         <Link to='/'>
-        <img src={assets.logo} alt="logo" className='h-8'/>
+        <motion.img whileHover={{scale: 1.05}} src={assets.logo} alt="logo" className='h-8'/>
         </Link>
         
         <div className={`max-sm:fixed max-sm:h-screen max-sm:w-full max-sm:top-16 
@@ -45,7 +50,7 @@ const Navbar = ({setShowLogin}) => {
             <img src={open ?assets.close_icon : assets.menu_icon} alt="menu" />
         </button>
 
-    </div>
+    </motion.div>
   )
 }
 

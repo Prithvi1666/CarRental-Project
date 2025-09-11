@@ -1,38 +1,50 @@
 import React from 'react'
 import Title from './Title'
 import { assets } from '../assets/assets'
+import { motion } from 'motion/react'
 
 const Testimonial = () => {
 
     const testimonials = [
-        {  name: "Vdpop Puranik", 
-            location: "Barcelona, Spain", 
-            image: assets.testimonial_image_1,  
-            testimonial: "I've rented cars form various companies, but the exprience with CarRental was exceptional." },
+        {
+            name: "Vdpop Puranik",
+            location: "Barcelona, Spain",
+            image: assets.testimonial_image_1,
+            testimonial: "I've rented cars form various companies, but the exprience with CarRental was exceptional."
+        },
 
-            {  name: "Harry Potter", 
-            location: "New York, USA", 
-            image: assets.testimonial_image_2,  
-            testimonial: "CarRenatal made my trip so much easier. The car was delivered right to my door, and the customer service was fantastics!." },
-        
-            
-            {  name: " Rane Bhau Patil", 
-            location: "Sdny, Australia", 
-            image: assets.testimonial_image_1,  
-            testimonial: "CarRenatal made my trip so much easier. The car was delivered right to my door, and the customer service was fantastics!." },
+        {
+            name: "Harry Potter",
+            location: "New York, USA",
+            image: assets.testimonial_image_2,
+            testimonial: "CarRenatal made my trip so much easier. The car was delivered right to my door, and the customer service was fantastics!."
+        },
 
-            
+
+        {
+            name: " Rane Bhau Patil",
+            location: "Sdny, Australia",
+            image: assets.testimonial_image_1,
+            testimonial: "CarRenatal made my trip so much easier. The car was delivered right to my door, and the customer service was fantastics!."
+        },
+
+
     ];
 
-  return (
-    <div className="py-28 px-6 md:px-16 lg:px-24 xl:px-44">
+    return (
+        <div className="py-28 px-6 md:px-16 lg:px-24 xl:px-44">
 
-        <Title title="What Our Customers Say" subtTitle="Discover why discerning travelers choose StayVenture for their luxury
+            <Title title="What Our Customers Say" subtTitle="Discover why discerning travelers choose StayVenture for their luxury
          accommodations around the world."/>
-           
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18">
                 {testimonials.map((testimonial, index) => (
-                    <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.2, ease: 'easeOut' }}
+                        viewport={{once: true, amount: 0.3}}
+                        key={index} className="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
                         <div className="flex items-center gap-3">
                             <img className="w-12 h-12 rounded-full" src={testimonial.image} alt={testimonial.name} />
                             <div>
@@ -42,16 +54,16 @@ const Testimonial = () => {
                         </div>
                         <div className="flex items-center gap-1 mt-4">
                             {Array(5).fill(0).map((_, index) => (
-                               <img key={index} src={assets.star_icon} alt="star_icon" />
-                            
+                                <img key={index} src={assets.star_icon} alt="star_icon" />
+
                             ))}
                         </div>
                         <p className="text-gray-500 max-w-90 mt-4 font-light">"{testimonial.testimonial}"</p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>
-  )
+    )
 }
 
 export default Testimonial
